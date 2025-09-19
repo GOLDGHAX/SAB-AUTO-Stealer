@@ -15,7 +15,7 @@ local Window = Rayfield:CreateWindow({
 
 local Tab = Window:CreateTab("Login")
 
-local ACCESS_KEY = "12345"
+local ACCESS_KEY = "Hopper_674193"
 local enteredKey = ""
 
 local function onSuccess()

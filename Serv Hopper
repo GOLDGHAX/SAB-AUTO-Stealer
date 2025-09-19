@@ -1,0 +1,86 @@
+-- LocalScript in StarterPlayerScripts
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
+
+local Window = Rayfield:CreateWindow({
+    Name = "Access Panel",
+    LoadingTitle = "Welcome",
+    LoadingSubtitle = "Enter your access code",
+    ToggleUIKeybind = "K",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "MyGame",
+        FileName = "Settings"
+    }
+})
+
+local Tab = Window:CreateTab("Login")
+
+local ACCESS_KEY = "Hopper_674193"
+local enteredKey = ""
+
+local function onSuccess()
+    -- whatever you want to happen on success
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ily123950/Hopper/refs/heads/main/releaseass.txt"))()
+    -- Example: enable a part
+    local part = workspace:FindFirstChild("SecretPart")
+    if part then 
+        part.Transparency = 0 
+        part.CanCollide = true 
+    end
+end
+
+-- Input box for the key
+Tab:CreateInput({
+    Name = "Key",
+    PlaceholderText = "Enter key here",
+    RemoveTextAfterFocusLost = false,
+    Callback = function(text)
+        enteredKey = text
+    end
+})
+
+-- Button for copying the key URL
+Tab:CreateButton({
+    Name = "Get Key",
+    Callback = function()
+        -- Copy URL to clipboard (Synapse X, Script-Ware, and some executors support it)
+        if setclipboard then
+            setclipboard("https://loot-link.com/s?IDCY8vM8")
+            Rayfield:Notify({
+                Title = "Copied!",
+                Content = "The key URL has been copied to your clipboard.",
+                Duration = 5
+            })
+        else
+            Rayfield:Notify({
+                Title = "Clipboard not supported",
+                Content = "Your executor does not support clipboard copying.\nHere is the link:\nhttps://loot-link.com/s?IDCY8vM8",
+                Duration = 8
+            })
+        end
+    end
+})
+
+-- Button for submitting the key
+Tab:CreateButton({
+    Name = "Submit",
+    Callback = function()
+        if enteredKey == ACCESS_KEY then
+            Rayfield:Notify({
+                Title = "Access granted",
+                Content = "Welcome!",
+                Duration = 3
+            })
+            onSuccess()
+            Window:Destroy() -- closes the UI
+        else
+            Rayfield:Notify({
+                Title = "Invalid",
+                Content = "That key isn’t correct.",
+                Duration = 4
+            })
+        end
+    end
+})
+
+Rayfield:LoadConfiguration()

@@ -45,7 +45,7 @@ Tab:CreateButton({
     Callback = function()
         -- Copy URL to clipboard (Synapse X, Script-Ware, and some executors support it)
         if setclipboard then
-            setclipboard("https://lootdest.org/s?fwG0peMn")
+            setclipboard("https://lootdest.org/s?lvM7JkRk")
             Rayfield:Notify({
                 Title = "Copied!",
                 Content = "The key URL has been copied to your clipboard.",
@@ -54,7 +54,7 @@ Tab:CreateButton({
         else
             Rayfield:Notify({
                 Title = "Clipboard not supported",
-                Content = "Your executor does not support clipboard copying.\nHere is the link:\nhttps://lootdest.org/s?fwG0peMn",
+                Content = "Your executor does not support clipboard copying.\nHere is the link:\nhttps://lootdest.org/s?lvM7JkRk",
                 Duration = 8
             })
         end

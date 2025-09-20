@@ -1,0 +1,38 @@
+local Rayfield=loadstring(game:HttpGet("https://sirius.menu/rayfield"))();
+local Window=Rayfield:CreateWindow({Name="Paid SAB Script",LoadingTitle="Welcome",LoadingSubtitle="Enter your access code",ToggleUIKeybind="K",ConfigurationSaving={Enabled=true,FolderName="MyGame",FileName="Settings"}});
+local Tab=Window:CreateTab("Login");
+local ACCESS_KEYS={"8404913849193939","67",};
+local enteredKey="";
+local function onSuccess()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ily123950/Hopper/refs/heads/main/releaseass.txt"))();
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Jairoxdhola/Stealabrainrot/refs/heads/main/Stealabrainrot"))();
+    local part=workspace:FindFirstChild("SecretPart");
+    if part then part.Transparency=0;part.CanCollide=true;end;
+end;
+Tab:CreateInput({Name="Key",PlaceholderText="Enter key here",RemoveTextAfterFocusLost=false,Callback=function(text)
+    enteredKey=text;
+    if table.find(ACCESS_KEYS,enteredKey)then
+        Rayfield:Notify({Title="Access granted",Content="Welcome! The UI is now closing.",Duration=3});
+        onSuccess();
+        Window:Destroy();
+    end;
+end});
+Tab:CreateButton({Name="Get Key",Callback=function()
+    local keyUrl="https://discord.gg/XvNWzjdqpm";
+    if setclipboard then
+        setclipboard(keyUrl);
+        Rayfield:Notify({Title="Copied!",Content="The key acquisition URL has been copied to your clipboard. Obtain one of the valid keys to proceed.",Duration=5});
+    else
+        Rayfield:Notify({Title="Clipboard not supported",Content="Your executor does not support clipboard copying. Here is the link to get a key: "..keyUrl.." (Copy this manually and get one of the valid keys.)",Duration=8});
+    end;
+end});
+Tab:CreateButton({Name="Submit",Callback=function()
+    if table.find(ACCESS_KEYS,enteredKey)then
+        Rayfield:Notify({Title="Access granted",Content="Welcome!",Duration=3});
+        onSuccess();
+        Window:Destroy();
+    else
+        Rayfield:Notify({Title="Invalid",Content="That key isn’t correct. Please try another valid key.",Duration=4});
+    end;
+end});
+Rayfield:LoadConfiguration();
